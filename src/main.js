@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import store from './store/index.js';
+
 import {createRouter, createWebHistory} from 'vue-router';
 
 
@@ -47,4 +49,5 @@ const router = createRouter({
 
 createApp(App)
 .use(router)
+.use(store)
 .mount('#app')

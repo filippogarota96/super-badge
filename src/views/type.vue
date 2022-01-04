@@ -5,34 +5,16 @@
     </h2>
 
     <div class="badges">
-        <div class="card first-card">
-            <div class="padding flex">
-                <div class="first-picture-container">
+        <first-badge text="text-default" background="bg-color-default" shadow="shadow-default"/>
 
-                </div>
-                <div class="name-surname">
-                    <p>Nome Cognome</p>
-                    <p>Pinco Pallo</p>
-                </div>
-                <div class="adress">
-                    <p>Sede</p>
-                    <p>Via dei Pinco Pallo</p>
-                </div>
-            </div>
-            <div class="role">
-
-            </div>
-        </div>
-
-        <div class="card second-card">
-            <div class="second-picture-container">
-
-            </div>
-        </div>
+        <second-badge />
+        
     </div>
 </template>
 
 <script setup>
+    import firstBadge from '../components/firstBadge.vue'
+    import secondBadge from '../components/secondBadge.vue'
     import {ref} from 'vue'
     const props = defineProps(['name']);
 </script>
@@ -51,46 +33,64 @@
         display: flex;
         flex-wrap: wrap;
     }
+    //first badge
 
-    .first-card {
-        width: 500px;
-        height: 300px;
+    // .background-selected {
+    //     background-color: lightgrey;
+    // }
+    // .first-card {
+    //     width: 500px;
+    //     height: 300px;
         
 
-        .first-picture-container {
-            width: 150px ;
-            height: 150px;
-            border: 1px solid grey;
-            border-radius: 20px;
-            margin-right: 40px;
-        }
+    //     .first-picture-container {
+    //         width: 150px ;
+    //         height: 150px;
+    //         border: 1px solid grey;
+    //         border-radius: 20px;
+    //         margin-right: 40px;
+    //     }
 
-        .role {
-            width: 100%;
-            background: lightgray;
-        }
+    //     .badge-role {
+    //         width: 100%;
+    //         height: 60px;
+    //         padding-left: 30px;
+    //         margin-bottom: 30px;
+    //         position: relative;
+            
+    //         .role-info {
+    //             color: #ffff;
+    //         }
+
+    //         .role-picture {
+    //             width: 70px;
+    //             height: 70px;
+    //             background-color: #ECECED;
+    //             border-radius: 50%;
+    //             position: absolute;
+    //             top: -30px;
+    //             right: 30px;
+    //         }
+
+
+    //     }
+    // }
+
+
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    .second-card {
-        width: 350px;
-        height: 500px;
-
-        .second-picture-container {
-            width: 330px ;
-            height: 150px;
-            border: 1px solid grey;
-            border-radius: 20px;
-            margin:  30px auto
-        }
-        
+    .padding {
+        padding:30px
     }
 
-    .card p {
-        margin: 0;
+    .mt-2 {
+        margin-top: 20px;
     }
 
-    .name-surname {
 
-    }
+    
     
 </style>
