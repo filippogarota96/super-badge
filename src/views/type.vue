@@ -5,21 +5,78 @@
     </h2>
 
     <div class="badges">
-        <first-badge text="text-default" background="bg-color-default" shadow="shadow-default"/>
+        <first-badge 
+            :text="firstCard.text"
+            :background="firstCard.background" 
+            :shadow="firstCard.shadow"
+            :border="firstCard.border"
+            :role="firstCard.role"
+            @select="selectType"
+        />
 
-        <second-badge />
+        <second-badge
+            :border="secondCard.border"
+            :background="secondCard.background" 
+            :shadow="secondCard.shadow"
+            :role="secondCard.role"
+            @select="selectType"
+         />
         
     </div>
 </template>
 
 <script setup>
+
     import firstBadge from '../components/firstBadge.vue'
     import secondBadge from '../components/secondBadge.vue'
-    import {ref} from 'vue'
+    import { useStore } from 'vuex'
+
+    import { ref, reactive} from 'vue'
+
     const props = defineProps(['name']);
+
+    const firstCard = reactive({
+        text: 'text-default',
+        background: 'bg-color-default',
+        shadow: 'shadow-default',
+        border: 'default-border',
+        shadow: 'shadow-default',
+        role: 'bg-role-default'
+    });
+
+    const secondCard = reactive({
+        text: 'text-default',
+        background: 'bg-color-default',
+        shadow: 'shadow-default',
+        border: 'default-border',
+        shadow: 'shadow-default',
+        role: 'bg-role-default'
+    })
+
+    const store = useStore();
+
+    
+    
+
+    const selectType = (selectedType) => { 
+        store.commit('selectBadge', selectedType);
+
+        if (store.getters.getSelectedType === 'FIRST') {
+            firstCard.text = '',
+            firstCard.background = 'bg-color-selected',
+            firstCard.shadow = 'shadow-selected',
+            firstCard.role = 'bg-role-selected',
+            firstCard.border = "selected-border"
+        }
+
+        if (store.getters.getSelectedType === "SECOND") {
+
+        }
+     }
 </script>
 
 <style lang="scss">
+
     .badges {
         width: 90%;
         margin: 50px ;
@@ -33,49 +90,6 @@
         display: flex;
         flex-wrap: wrap;
     }
-    //first badge
-
-    // .background-selected {
-    //     background-color: lightgrey;
-    // }
-    // .first-card {
-    //     width: 500px;
-    //     height: 300px;
-        
-
-    //     .first-picture-container {
-    //         width: 150px ;
-    //         height: 150px;
-    //         border: 1px solid grey;
-    //         border-radius: 20px;
-    //         margin-right: 40px;
-    //     }
-
-    //     .badge-role {
-    //         width: 100%;
-    //         height: 60px;
-    //         padding-left: 30px;
-    //         margin-bottom: 30px;
-    //         position: relative;
-            
-    //         .role-info {
-    //             color: #ffff;
-    //         }
-
-    //         .role-picture {
-    //             width: 70px;
-    //             height: 70px;
-    //             background-color: #ECECED;
-    //             border-radius: 50%;
-    //             position: absolute;
-    //             top: -30px;
-    //             right: 30px;
-    //         }
-
-
-    //     }
-    // }
-
 
     .flex {
         display: flex;

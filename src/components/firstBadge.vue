@@ -1,8 +1,8 @@
 <template>
-    <div class="card first-card" :class="shadow">
+    <div class="card first-card" :class="shadow" @click="selectThis">
             <div class="padding flex">
             
-                <div class="first-picture-container default-border">
+                <div class="first-picture-container" :class="border">
 
                 </div>
                 <div class="datas" :class="text">
@@ -16,12 +16,12 @@
                     </div>
                 </div>
             </div>
-            <div class="badge-role background-selected" :class="background">
+            <div class="badge-role" :class="background">
                 <div class="role-info">
                     <p>Ruolo</p>
                     <p>Junior hero</p>
                 </div>
-                <div class="role-picture">
+                <div class="role-picture" :class="role">
 
                 </div>
             </div>
@@ -29,7 +29,17 @@
 </template>
 
 <script setup>
-    const props = defineProps(['text', 'background', 'shadow', 'name', 'address']);    
+    import { useStore } from 'vuex'
+    const props = defineProps(['text', 'background', 'shadow', 'name', 'address', 'border', 'role']);
+    const emits = defineEmits(['select']);
+
+    const store = useStore();
+
+    const isSelected = 'FIRST'
+    
+    const selectThis = () => emits('select', isSelected );
+
+
 </script>
 
 
@@ -42,10 +52,7 @@
         flex-wrap: wrap;
     }
 
-    .shadow-default {
-        box-shadow: 1px 1px 3px 2px lightgray;
-
-    }
+   
 
     .card p {
         margin: 0;
@@ -62,7 +69,6 @@
         .first-picture-container {
             width: 150px ;
             height: 150px;
-            border: 1px solid grey;
             border-radius: 20px;
             margin-right: 40px;
         }
@@ -81,7 +87,6 @@
             .role-picture {
                 width: 70px;
                 height: 70px;
-                background-color: #ECECED;
                 border-radius: 50%;
                 position: absolute;
                 top: -30px;
@@ -91,9 +96,6 @@
 
         }
 
-        .default-border {
-            border: 1px solid #FEFEFE;
-        }
     }
 
     .name-surname p:last-child, 
@@ -109,6 +111,35 @@
     .bg-color-default {
         background: #E3E2E5;
     }
+
+    .default-border {
+        border: 1px solid #C3C3C3;
+    }
+
+    .shadow-default {
+        box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.1);
+    }
+
+    .bg-role-default {
+        background-color: #F4F4F4;
+    }
+
+    .bg-role-selected {
+        background-color: #D9D9DB;
+    }
+
+    .bg-color-selected {
+        background-color: #C8C6CB;
+    }
+
+    .selected-border {
+        border: solid #C8C6CB;
+    }
+
+    .shadow-selected {
+        box-shadow: 1px 1px 3px 2px lightgray;
+    }
+
 
 
 </style>

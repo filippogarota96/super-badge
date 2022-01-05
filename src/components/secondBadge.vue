@@ -1,10 +1,10 @@
 <template>
-    <div class="card second-card">
-            <div class="second-picture-container text default-border">
+    <div class="card second-card" :class="shadow">
+            <div class="second-picture-container text" :class="border">
 
             </div>
 
-            <div class="data">
+            <div class="data" :class="background">
                 <div class="name">
                     <p>Nome Cognome</p>
                     <p>Pinco Pallo</p>
@@ -17,15 +17,27 @@
                     <p>Ruolo</p>
                     <p>Junior hero</p>
                 </div>
-                <div class="role-picture">
+                <div class="role-picture" :class="role">
 
                 </div>
             </div>
     </div>
 </template>
 
+<script setup>
+
+    const props = defineProps(['background', 'border', 'shadow', 'name', 'address', 'role',])
+
+    const emits = defineEmits(['select'])
+
+    const isSelected = 'SECOND'
+
+    const selectThis = () => emits('select', isSelected)
+</script>
+
 
 <style lang="scss">
+     
      .second-card {
         width: 350px;
         height: 500px;
@@ -42,7 +54,6 @@
         .data {
             width: 100%;
             height: 58%;
-            background-color: lightgrey;
             padding: 0 30px;
             color: #fff;
             position: relative;
@@ -60,15 +71,10 @@
         .role-picture {
             width: 100px;
             height: 100px;
-            background-color: #ECECED;
             border-radius: 50%;
             position: absolute;
             right: 30px;
             bottom: 30px;
-        }
-
-        .default-border {
-            border: 1px solid #FEFEFE;
         }
         
     }
@@ -81,5 +87,25 @@
     }
     .card p {
         margin: 0;
+    }
+
+    .bg-role-default {
+        background-color: #F4F4F4;
+    }
+
+    .bg-role-selected {
+        background-color: #D9D9DB;
+    }
+
+    .bg-color-default {
+        background: #E3E2E5;
+    }
+
+    .default-border {
+        border: 1px solid #C3C3C3;
+    }
+
+    .shadow-default {
+        box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.1);
     }
 </style>
