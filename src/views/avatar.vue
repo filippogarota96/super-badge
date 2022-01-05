@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="badge">
-           <first-badge :avatar="image" />
+           <first-badge v-if="isSelected === 'FIRST'" :avatar="image" />
+            <second-badge v-if="isSelected ==='SECOND'" :avatar="image" />
         </div>
     </div>
 </template>
@@ -27,11 +28,9 @@
     const props = defineProps(['name']);
 
     const avatars = ref(['lego1', 'lego2', 'lego3', 'lego4', 'lego5', 'lego6'])
-    
-    const isSelected = ref(null)
-
     const store = useStore();
-
+    
+    const isSelected = computed(() => store.getters.getSelectedType);
     const image = computed(() => store.state.avatar)
 
     const selectAvatar = (avatar, i) => {
