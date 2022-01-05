@@ -1,5 +1,5 @@
 <template>
-    <div class="card second-card" :class="shadow">
+    <div class="card second-card" :class="shadow" @click="selectThis">
             <div class="second-picture-container text" :class="border">
 
             </div>
@@ -107,5 +107,15 @@
 
     .shadow-default {
         box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.1);
+
+    }
+    .shadow-selected {
+        box-shadow: 1px 1px 3px 2px lightgray;
+    }
+    .bg-color-selected {
+        background-color: #C8C6CB;
+    }
+    .selected-border {
+        border: solid 1px #C8C6CB;
     }
 </style>

@@ -47,7 +47,6 @@
 
     .card {
         border-radius: 20px;
-        box-shadow: 1px 1px 3px 2px lightgray;
         display: flex;
         flex-wrap: wrap;
     }
@@ -104,6 +103,7 @@
         font-weight: bold;
         font-size: 1.2rem;
     }
+    
     .text-default {
         color: #AEAEAE
     }
@@ -133,7 +133,7 @@
     }
 
     .selected-border {
-        border: solid #C8C6CB;
+        border: solid 1px #C8C6CB;
     }
 
     .shadow-selected {

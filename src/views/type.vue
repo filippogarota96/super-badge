@@ -31,46 +31,27 @@
     import secondBadge from '../components/secondBadge.vue'
     import { useStore } from 'vuex'
 
-    import { ref, reactive} from 'vue'
+    import { ref, reactive, computed} from 'vue'
 
     const props = defineProps(['name']);
 
-    const firstCard = reactive({
-        text: 'text-default',
-        background: 'bg-color-default',
-        shadow: 'shadow-default',
-        border: 'default-border',
-        shadow: 'shadow-default',
-        role: 'bg-role-default'
-    });
-
-    const secondCard = reactive({
-        text: 'text-default',
-        background: 'bg-color-default',
-        shadow: 'shadow-default',
-        border: 'default-border',
-        shadow: 'shadow-default',
-        role: 'bg-role-default'
-    })
-
     const store = useStore();
 
-    
+    const firstCard = computed(() =>  store.getters.getFirstCardStyle);
+    const secondCard = computed(() => store.getters.getSecondCardStyle )
+
+
     
 
     const selectType = (selectedType) => { 
         store.commit('selectBadge', selectedType);
 
         if (store.getters.getSelectedType === 'FIRST') {
-            firstCard.text = '',
-            firstCard.background = 'bg-color-selected',
-            firstCard.shadow = 'shadow-selected',
-            firstCard.role = 'bg-role-selected',
-            firstCard.border = "selected-border"
-        }
+            store.commit('getSelectedFirstCardStyle')
+        } 
 
         if (store.getters.getSelectedType === "SECOND") {
-
+           store.commit('getSelectedSecondCardStyle');
         }
      }
 </script>
